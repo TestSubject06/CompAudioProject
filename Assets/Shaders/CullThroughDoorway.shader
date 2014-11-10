@@ -1,4 +1,4 @@
-﻿Shader "Custom/HideMaterial" {
+﻿Shader "Custom/CullThroughDoorway" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 	}
@@ -7,7 +7,7 @@
 		LOD 200
 		
 		Stencil{
-			Ref 1
+			Ref 0
 			Comp Equal
 		}
 		

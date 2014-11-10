@@ -15,4 +15,11 @@ public class StrangeCameraScript : MonoBehaviour {
 		Vector3 relativePosition = playerCamera.transform.position - doorway1.transform.position;
 		transform.position = doorway2.transform.position + relativePosition;
 	}
+
+	public void SwapCameras(){
+		GameObject temp = doorway1;
+		doorway1 = doorway2;
+		doorway2 = temp;
+		Debug.Log("Swapped");
+	}
 }

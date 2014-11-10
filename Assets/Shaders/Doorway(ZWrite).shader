@@ -1,14 +1,20 @@
-﻿Shader "Custom/ReverseHidden" {
+﻿Shader "Custom/Portal(ZWrite)" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		Tags {"Queue"="Background" "RenderType"="Opaque" }
 		LOD 200
 		
-		Stencil{
-			Ref 0
-			Comp Equal
+		ZWrite On
+		ColorMask 0
+		Pass{
+			Stencil {
+				Ref 1
+				Comp always
+				Pass replace
+				ZFail Zero
+			}
 		}
 		
 		CGPROGRAM
