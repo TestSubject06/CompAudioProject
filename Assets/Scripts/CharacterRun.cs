@@ -5,7 +5,7 @@ public class CharacterRun : MonoBehaviour
 {
 	public float walkSpeed = 7; // regular speed
 	public float crchSpeed = 3; // crouching speed
-	public float runSpeed = 20; // run speed
+	public float runSpeed = 60; // run speed
 	
 	private CharacterMotor chMotor;
 	private Transform tr;
@@ -29,6 +29,16 @@ public class CharacterRun : MonoBehaviour
 		if ((Input.GetKey("left shift") || Input.GetKey("right shift")) && chMotor.grounded)
 		{
 			speed = runSpeed;            
+		}
+
+		if (Input.GetKey("c")){ // press C to crouch
+			vScale = 0.5f;
+			speed = crchSpeed; // slow down when crouching
+		}
+
+		if (Input.GetKey("z")){ // press C to crouch
+			vScale = 1.8f;
+			speed = crchSpeed; // slow down when crouching
 		}
 		
 		chMotor.movement.maxForwardSpeed = speed; // set max speed
