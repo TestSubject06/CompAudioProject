@@ -18,6 +18,7 @@ public class CharacterRun : MonoBehaviour
 		tr = transform;
 		CharacterController ch = GetComponent<CharacterController>();
 		dist = ch.height/2; // calculate distance to ground
+
 	}
 	
 	// Update is called once per frame
