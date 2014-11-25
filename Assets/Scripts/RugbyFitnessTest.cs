@@ -92,8 +92,14 @@ public class RugbyFitnessTest : MonoBehaviour {
 					}
 				}
 			}
-		}else{
+		}else if(isStarted){
 			wait -= Time.deltaTime;
+			if(wait <= 0.0f){
+				noisePlayer.audio.Stop();
+				noisePlayer.audio.clip = noiseSound;
+				noisePlayer.audio.loop = true;
+				noisePlayer.audio.Play();
+			}
 		}
 	}
 
@@ -106,9 +112,9 @@ public class RugbyFitnessTest : MonoBehaviour {
 			lookAtTriggerZone1 = false;
 			level = 0;
 			currentShuttle = 0;
-			wait = 5.0f;
+			wait = 4.5f;
 			audio.clip = BeginLevel;
-			audio.PlayDelayed(5.0f);
+			audio.PlayDelayed(4.5f);
 		}
 	}
 
