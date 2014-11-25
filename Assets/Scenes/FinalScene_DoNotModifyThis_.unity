@@ -14457,7 +14457,6 @@ GameObject:
   - 65: {fileID: 1047349915}
   - 23: {fileID: 1047349914}
   - 114: {fileID: 1047349917}
-  - 82: {fileID: 1047349918}
   m_Layer: 0
   m_Name: FitnessGetReady
   m_TagString: Untagged
@@ -14524,81 +14523,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1047349912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa5fcae05f9d71d47b7e3d6d207a3bef, type: 3}
+  m_Script: {fileID: 11500000, guid: 226787250b25e324aba91d9d42ac1172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerStartZone: {fileID: 1047349912}
-  noisePlayer: {fileID: 1069638548}
-  noiseSound: {fileID: 8300000, guid: f46ddd5e808e16844af146a37bff91aa, type: 3}
-  Warning: {fileID: 8300000, guid: dc2350bd5a9268f4489d285ab4606fad, type: 3}
-  BeginLevel: {fileID: 8300000, guid: ec4851416b981ab428902c2ba5d1aadf, type: 3}
-  OkayLevel: {fileID: 8300000, guid: 6d863b5ba252ca74286305ea5c540f7a, type: 3}
-  RunOver: {fileID: 8300000, guid: c6091345d960cc64ca6bf489fa46fd10, type: 3}
-  isStarted: 0
-  btriggerZone1: 0
-  btriggerZone2: 0
-  lookAtTriggerZone1: 0
-  silentTime: .600000024
-  volumeEnvelope: {x: -.300000012, y: .800000012}
-  pitchEnvelope: {x: 1, y: 10}
---- !u!82 &1047349918
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1047349912}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!1 &1053186774
 GameObject:
   m_ObjectHideFlags: 0
@@ -27448,6 +27375,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1876262545}
   - 114: {fileID: 1876262546}
+  - 82: {fileID: 1876262547}
   m_Layer: 0
   m_Name: RugbyFitnessTestScriptContainer
   m_TagString: Untagged
@@ -27481,20 +27409,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5fcae05f9d71d47b7e3d6d207a3bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerStartZone: {fileID: 0}
-  noisePlayer: {fileID: 0}
-  noiseSound: {fileID: 0}
-  Warning: {fileID: 0}
-  BeginLevel: {fileID: 0}
-  OkayLevel: {fileID: 0}
-  RunOver: {fileID: 0}
+  triggerStartZone: {fileID: 1047349912}
+  noisePlayer: {fileID: 1069638548}
+  noiseSound: {fileID: 8300000, guid: f46ddd5e808e16844af146a37bff91aa, type: 3}
+  Warning: {fileID: 8300000, guid: dc2350bd5a9268f4489d285ab4606fad, type: 3}
+  BeginLevel: {fileID: 8300000, guid: ec4851416b981ab428902c2ba5d1aadf, type: 3}
+  OkayLevel: {fileID: 8300000, guid: 6d863b5ba252ca74286305ea5c540f7a, type: 3}
+  RunOver: {fileID: 8300000, guid: c6091345d960cc64ca6bf489fa46fd10, type: 3}
   isStarted: 0
-  btriggerZone1: 0
-  btriggerZone2: 0
+  something1: 0
+  something2: 0
   lookAtTriggerZone1: 0
   silentTime: .600000024
-  volumeEnvelope: {x: 0, y: .800000012}
-  pitchEnvelope: {x: .800000012, y: 1.79999995}
+  volumeEnvelope: {x: -.300000012, y: .800000012}
+  pitchEnvelope: {x: 1, y: 10}
+--- !u!82 &1876262547
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1876262544}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1884251869
 GameObject:
   m_ObjectHideFlags: 0

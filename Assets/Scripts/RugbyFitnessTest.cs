@@ -14,6 +14,8 @@ public class RugbyFitnessTest : MonoBehaviour {
 	public bool isStarted;
 	private bool btriggerZone1;
 	private bool btriggerZone2;
+	public int something1;
+	public int something2;
 	public bool lookAtTriggerZone1;
 
 	protected float timer;
@@ -110,19 +112,17 @@ public class RugbyFitnessTest : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other){
-		startFitnessTest();
-	}
-
 	public void hitTriggerZone(int triggerZone){
 		if(triggerZone == 1){
 			Debug.Log("TRIGGER1");
-			btriggerZone1 = true;
+			this.btriggerZone1 = true;
+			this.something1++;
 			Debug.Log(btriggerZone1);
 		}
 		if(triggerZone == 2){
 			Debug.Log("TRIGGER2");
-			btriggerZone2 = true;
+			this.something2++;
+			this.btriggerZone2 = true;
 		}
 	}
 }
