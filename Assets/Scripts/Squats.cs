@@ -24,10 +24,7 @@ public class Squats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (Camera.main.transform.eulerAngles.x);
 
-
-	
 	}
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerEnter.html
 	void OnTriggerEnter(Collider other) {
