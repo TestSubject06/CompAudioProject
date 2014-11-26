@@ -44,11 +44,11 @@ public class PullUps : MonoBehaviour {
 			renderer.material.color = triggerEnterColor;
 			if (planeIndicator != null)
 				planeIndicator.renderer.material.color = triggerEnterColor;
-			workout.Play();
+			other.gameObject.GetComponentInChildren<VoiceAssembler>().playSentence("You're doing pullups four sets eight reps");
 			
 			Debug.Log (gameObject.name + ": entered trigger with name " + other.transform.name);
 		}
-		
+
 		//Tags:
 		//Checking to see if the object that entered the trigger has a specific trigger:
 		if (other.gameObject.tag == "Player") 
@@ -63,15 +63,15 @@ public class PullUps : MonoBehaviour {
 	void OnTriggerStay(Collider other) {
 		if (Input.GetKeyDown("z"))
 		{
-			if ( counter <= reps){
-				audio.clip = clips[counter];
+			if ( counter < reps){
+				other.gameObject.GetComponentInChildren<VoiceAssembler>().playSentence(new SpeechVoices[]{(SpeechVoices)counter});
+				//audio.clip = clips[counter];
 				//audio.clip = setClips[setCounter]; 
-				audio.Play ();
+				//audio.Play ();
 				counter++;
-				
 			}
 			if( counter == reps){
-				finished.Play();
+				//finished.Play();
 				counter = 0;
 				setCounter++;
 				if (setCounter == set){
