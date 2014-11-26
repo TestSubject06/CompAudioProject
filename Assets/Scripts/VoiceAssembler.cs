@@ -49,11 +49,11 @@ public class VoiceAssembler : MonoBehaviour {
 				audio.clip = voiceClips [(int)voiceClipQueue [0]];
 				voiceClipQueue.RemoveAt (0);
 				audio.Play ();
+				GetComponentInParent<MusicPlayerController>().LowerVolume(audio.clip.length);
 			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.Q)) {
-			Debug.Log("Yeah.");
 			playSentence(new SpeechVoices[]{SpeechVoices.Workout, SpeechVoices.Two, SpeechVoices.YoureDoing, SpeechVoices.Pullups, SpeechVoices.Eight, SpeechVoices.Sets, SpeechVoices.Five, SpeechVoices.Reps});
 		}
 	}
@@ -160,6 +160,7 @@ public class VoiceAssembler : MonoBehaviour {
 		audio.clip = voiceClips [(int)voiceClipQueue [0]];
 		voiceClipQueue.RemoveAt (0);
 		audio.Play ();
+		GetComponentInParent<MusicPlayerController>().LowerVolume(audio.clip.length);
 	}
 
 	private void QueueVoiceClip(SpeechVoices voiceClip){

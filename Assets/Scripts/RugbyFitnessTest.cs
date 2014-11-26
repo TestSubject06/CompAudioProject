@@ -45,13 +45,12 @@ public class RugbyFitnessTest : MonoBehaviour {
 			float percent = timer / (levelTimes[level] - silentTime);
 			if(percent < 1){
 				noisePlayer.audio.pitch = Mathf.Lerp(pitchEnvelope.x, pitchEnvelope.y, Mathf.Max(percent, 0));
-				noisePlayer.audio.volume = Mathf.Lerp(volumeEnvelope.x, volumeEnvelope.y, Mathf.Max(percent, 0));
+				noisePlayer.audio.volume = Mathf.Pow(Mathf.Lerp(volumeEnvelope.x, volumeEnvelope.y, Mathf.Max(percent, 0)), 4);
 			}else{
 				noisePlayer.audio.volume -= 0.10f;
 			}
 
 			//Increment the shuttle and level.
-			//TODO: Find a place for the beep sound to trigger.
 			if(timer > levelTimes[level]){
 				currentShuttle++;
 				noisePlayer.audio.Stop();
@@ -61,6 +60,12 @@ public class RugbyFitnessTest : MonoBehaviour {
 				if(currentShuttle > levelShuttles[level]){
 					currentShuttle = 0;
 					level++;
+					//TODO: Wait, play level [level] and then signal the beginning with the next beep.
+					//noisePlayer.GetComponent<VoiceAssembler>().playSentence(new SpeechVoices[]{SpeechVoices.Level, (SpeechVoices)level}));
+					//audio.Stop();
+					//audio.clip = BeginLevel;
+					//audio.PlayDelayed(1.0f);
+					//wait = 1.0f;
 				}
 				//Normally we want to subtract by the step amount to prevent wasted miliseconds
 				// but in this case we really do want to reset the timer.
