@@ -49,6 +49,9 @@ public class VoiceAssembler : MonoBehaviour {
 				audio.clip = voiceClips [(int)voiceClipQueue [0]];
 				voiceClipQueue.RemoveAt (0);
 				audio.Play ();
+				audio.loop = false;
+				audio.pitch = 1.0f;
+				audio.volume = 1.0f;
 				GetComponentInParent<MusicPlayerController>().LowerVolume(audio.clip.length);
 			}
 		}
@@ -160,6 +163,9 @@ public class VoiceAssembler : MonoBehaviour {
 		audio.clip = voiceClips [(int)voiceClipQueue [0]];
 		voiceClipQueue.RemoveAt (0);
 		audio.Play ();
+		audio.loop = false;
+		audio.pitch = 1.0f;
+		audio.volume = 1.0f;
 		GetComponentInParent<MusicPlayerController>().LowerVolume(audio.clip.length);
 	}
 

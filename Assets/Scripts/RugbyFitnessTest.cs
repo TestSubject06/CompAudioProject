@@ -14,8 +14,6 @@ public class RugbyFitnessTest : MonoBehaviour {
 	public bool isStarted;
 	private bool btriggerZone1;
 	private bool btriggerZone2;
-	public int something1;
-	public int something2;
 	public bool lookAtTriggerZone1;
 
 	protected float timer;
@@ -48,6 +46,7 @@ public class RugbyFitnessTest : MonoBehaviour {
 				noisePlayer.audio.volume = Mathf.Pow(Mathf.Lerp(volumeEnvelope.x, volumeEnvelope.y, Mathf.Max(percent, 0)), 4);
 			}else{
 				noisePlayer.audio.volume -= 0.10f;
+				noisePlayer.GetComponentInParent<MusicPlayerController>().LowerVolume(0.1f);
 			}
 
 			//Increment the shuttle and level.
@@ -61,11 +60,8 @@ public class RugbyFitnessTest : MonoBehaviour {
 					currentShuttle = 0;
 					level++;
 					//TODO: Wait, play level [level] and then signal the beginning with the next beep.
-					//noisePlayer.GetComponent<VoiceAssembler>().playSentence(new SpeechVoices[]{SpeechVoices.Level, (SpeechVoices)level}));
-					//audio.Stop();
-					//audio.clip = BeginLevel;
-					//audio.PlayDelayed(1.0f);
-					//wait = 1.0f;
+					noisePlayer.GetComponent<VoiceAssembler>().playSentence(new SpeechVoices[]{SpeechVoices.Level, (SpeechVoices)level, SpeechVoices.Begin});
+					wait = 2.0f;
 				}
 				//Normally we want to subtract by the step amount to prevent wasted miliseconds
 				// but in this case we really do want to reset the timer.
@@ -104,6 +100,9 @@ public class RugbyFitnessTest : MonoBehaviour {
 				noisePlayer.audio.clip = noiseSound;
 				noisePlayer.audio.loop = true;
 				noisePlayer.audio.Play();
+
+				audio.clip = BeginLevel;
+				audio.Play();
 			}
 		}
 	}
@@ -111,12 +110,12 @@ public class RugbyFitnessTest : MonoBehaviour {
 	public void startFitnessTest(){
 		if(!isStarted){
 			isStarted = true;
-			noisePlayer.GetComponent<VoiceAssembler>().playSentence("You're doing the rugby fitness test, level one begin");
+			noisePlayer.GetComponent<VoiceAssembler>().playSentence("You're doing the rugby fitness test, level nine begin");
 			btriggerZone1 = false;
 			btriggerZone2 = false;
 			lookAtTriggerZone1 = false;
-			level = 0;
-			currentShuttle = 0;
+			level = 8;
+			currentShuttle = 10;
 			wait = 4.5f;
 			audio.clip = BeginLevel;
 			audio.PlayDelayed(4.5f);
@@ -125,14 +124,9 @@ public class RugbyFitnessTest : MonoBehaviour {
 
 	public void hitTriggerZone(int triggerZone){
 		if(triggerZone == 1){
-			Debug.Log("TRIGGER1");
 			this.btriggerZone1 = true;
-			this.something1++;
-			Debug.Log(btriggerZone1);
 		}
 		if(triggerZone == 2){
-			Debug.Log("TRIGGER2");
-			this.something2++;
 			this.btriggerZone2 = true;
 		}
 	}
