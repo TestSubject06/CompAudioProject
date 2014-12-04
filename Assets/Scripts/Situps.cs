@@ -7,7 +7,7 @@ public class Situps : MonoBehaviour {
 	public Color triggerEnterColor = Color.red;
 	public GameObject planeIndicator;
 	public AudioClip[] clips = new AudioClip[10];
-	public AudioSource workout;
+	//public AudioSource workout;
 	public AudioSource finished;
 	public int set = 4;
 	public int reps = 8;
@@ -37,9 +37,10 @@ public class Situps : MonoBehaviour {
 		if (controller != null) //only change color when character controller found
 		{
 			renderer.material.color = triggerEnterColor;
-			if (planeIndicator != null)
+			if (planeIndicator != null && other.gameObject.GetComponent<CharacterRun>().stillIn == true)
 				planeIndicator.renderer.material.color = triggerEnterColor;
-			workout.Play();
+			//workout.Play();
+			other.gameObject.GetComponentInChildren<VoiceAssembler>().playSentence("You're doing situps four sets eight reps");
 			
 			Debug.Log (gameObject.name + ": entered trigger with name " + other.transform.name);
 		}
@@ -59,8 +60,9 @@ public class Situps : MonoBehaviour {
 		if (Input.GetKeyDown("z"))
 		{
 			if ( counter <= reps){
-				audio.clip = clips[counter];
-				audio.Play ();
+				other.gameObject.GetComponentInChildren<VoiceAssembler>().playSentence(new SpeechVoices[]{(SpeechVoices)counter});
+				/*audio.clip = clips[counter];
+				audio.Play ();*/
 				counter++;
 				
 			}
@@ -78,9 +80,9 @@ public class Situps : MonoBehaviour {
 		//note that we are not checking tags or components here
 		
 		renderer.material.color = triggerExitColor;
-		if (planeIndicator != null)
+		if (planeIndicator != null && other.gameObject.GetComponent<CharacterRun>().stillIn == true)
 			planeIndicator.renderer.material.color = triggerExitColor;
-		workout.Stop();
+		//workout.Stop();
 		counter = 0;
 		Debug.Log (gameObject.name + ": exited trigger with name " + other.transform.name);
 	}

@@ -6,11 +6,12 @@ public class Squats : MonoBehaviour {
 	public Color triggerEnterColor = Color.red;
 	public GameObject planeIndicator;
 	public AudioClip[] clips = new AudioClip[10];
-	public AudioSource workout;
+	//public AudioSource workout;
 	public AudioSource finished;
 	public AudioSource badForm;
 	public int set = 4;
 	public int reps = 8;
+	public double pitchCount = 1.0;
 
 	private bool inThere = false;
 	int counter = 0;
@@ -40,8 +41,10 @@ public class Squats : MonoBehaviour {
 			renderer.material.color = triggerEnterColor;
 			if (planeIndicator != null)
 				planeIndicator.renderer.material.color = triggerEnterColor;
-			workout.Play();
+			//workout.Play();
 			inThere = true;
+			other.gameObject.GetComponentInChildren<VoiceAssembler>().playSentence("You're doing squats four sets eight reps");
+			//badForm.Play();
 
 			
 			Debug.Log (gameObject.name + ": entered trigger with name " + other.transform.name);
@@ -59,11 +62,13 @@ public class Squats : MonoBehaviour {
 	
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerStay.html
 	void OnTriggerStay(Collider other) {
+		badForm.Play();
 		if (Input.GetKeyDown("c"))
 		{
 			if ( counter <= reps){
-				audio.clip = clips[counter];
-				audio.Play ();
+				other.gameObject.GetComponentInChildren<VoiceAssembler>().playSentence(new SpeechVoices[]{(SpeechVoices)counter});
+				/*audio.clip = clips[counter];
+				audio.Play ();*/
 				counter++;
 				
 			}
@@ -77,9 +82,24 @@ public class Squats : MonoBehaviour {
 			
 		}
 		if (Input.GetKey (KeyCode.C)) {
-			if(Camera.main.transform.eulerAngles.x >= 200){
-				badForm.Play();
-			}
+			//other.transform.forward.y
+			Vector3 characterForward = new Vector3(other.transform.forward.x, 0, other.transform.forward.z);
+			characterForward.Normalize();
+
+			Debug.Log (Camera.main.transform.forward);
+
+			float percentOff = 1 - Mathf.Clamp01(Vector3.Dot(characterForward, Camera.main.transform.forward));
+
+			Vector3 characterDown = Vector3.Cross(characterForward, other.transform.right);
+			bool up = Vector3.Dot(characterDown, Camera.main.transform.forward)>=0;
+
+			//TODO: volume = Mathf.pow(percentOff, 4); pitch = 1 + ((.8 * percentOff)*(up?1:-1));
+			float volume = Mathf.Pow(percentOff, 4);
+			float pitch = (1f + ((.8f * percentOff)*(up?1:-1)));
+
+			badForm.volume = volume + .1f;
+			badForm.pitch = pitch + .1f;
+
 		}
 		
 	}
@@ -91,7 +111,7 @@ public class Squats : MonoBehaviour {
 		renderer.material.color = triggerExitColor;
 		if (planeIndicator != null)
 			planeIndicator.renderer.material.color = triggerExitColor;
-		workout.Stop();
+		//workout.Stop();
 		inThere = false;
 		counter = 0;
 		Debug.Log (gameObject.name + ": exited trigger with name " + other.transform.name);

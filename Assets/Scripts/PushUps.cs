@@ -7,7 +7,7 @@ public class PushUps : MonoBehaviour {
 	public Color triggerEnterColor = Color.red;
 	public GameObject planeIndicator;
 	public AudioClip[] clips = new AudioClip[10];
-	public AudioSource workout;
+	//public AudioSource workout;
 	public AudioSource finished;
 	public int set = 4;
 	public int reps = 10;
@@ -41,7 +41,8 @@ public class PushUps : MonoBehaviour {
 			renderer.material.color = triggerEnterColor;
 			if (planeIndicator != null)
 				planeIndicator.renderer.material.color = triggerEnterColor;
-			workout.Play();
+			//workout.Play();
+			other.gameObject.GetComponentInChildren<VoiceAssembler>().playSentence("You're doing pushups four sets ten reps");
 			
 			Debug.Log (gameObject.name + ": entered trigger with name " + other.transform.name);
 		}
@@ -61,8 +62,9 @@ public class PushUps : MonoBehaviour {
 		if (Input.GetKeyDown("z"))
 		{
 			if ( counter <= reps){
-				audio.clip = clips[counter];
-				audio.Play ();
+				other.gameObject.GetComponentInChildren<VoiceAssembler>().playSentence(new SpeechVoices[]{(SpeechVoices)counter});
+				/*audio.clip = clips[counter];
+				audio.Play ();*/
 				counter++;
 				
 			}
@@ -81,7 +83,7 @@ public class PushUps : MonoBehaviour {
 		renderer.material.color = triggerExitColor;
 		if (planeIndicator != null)
 			planeIndicator.renderer.material.color = triggerExitColor;
-		workout.Stop();
+		//workout.Stop();
 		counter = 0;
 		Debug.Log (gameObject.name + ": exited trigger with name " + other.transform.name);
 	}

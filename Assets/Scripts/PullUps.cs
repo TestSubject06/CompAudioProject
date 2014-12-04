@@ -8,8 +8,9 @@ public class PullUps : MonoBehaviour {
 	public GameObject planeIndicator;
 	public AudioClip[] clips = new AudioClip[10];
 	//public AudioClip[] setClips = new AudioClip[4];
-	public AudioSource workout;
+	//public AudioSource workout;
 	public AudioSource finished;
+
 	public int set = 4;
 	public int reps = 8;
 	int counter = 0;
@@ -71,7 +72,7 @@ public class PullUps : MonoBehaviour {
 				counter++;
 			}
 			if( counter == reps){
-				//finished.Play();
+				finished.Play();
 				counter = 0;
 				setCounter++;
 				if (setCounter == set){
@@ -89,7 +90,7 @@ public class PullUps : MonoBehaviour {
 		renderer.material.color = triggerExitColor;
 		if (planeIndicator != null)
 			planeIndicator.renderer.material.color = triggerExitColor;
-		workout.Stop();
+		//workout.Stop();
 		counter = 0;
 		Debug.Log (gameObject.name + ": exited trigger with name " + other.transform.name);
 	}
