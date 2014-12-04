@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class HitBoxScript : MonoBehaviour {
-	public Parent obj;
-
+	public Parent obj1;
+	public Parent obj2;
 	// Use this for initialization
 	void Start () {
 	
@@ -11,17 +11,20 @@ public class HitBoxScript : MonoBehaviour {
 
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerEnter.html
 	void OnTriggerEnter(Collider other) {
-		obj.enterAction(other);
+		obj1.enterAction(other);
+		obj2.enterAction(other);
 	}
 
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerStay.html
 	void OnTriggerStay(Collider other) {
-		obj.stayAction (other);
+		obj1.stayAction (other);
+		obj2.stayAction (other);
 	}
 
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerExit.html
 	void OnTriggerExit(Collider other) {
-		obj.leaveAction (other);
+		obj1.leaveAction (other);
+		obj2.leaveAction (other);
 	}
 
 	// Update is called once per frame
