@@ -28,6 +28,6 @@ public class CanvasText : Parent {
 	}
 
 	private void resetLabel() {
-		label.text = "";
+		label.text = "Work Hard, Play Hard!";
 	}
 }

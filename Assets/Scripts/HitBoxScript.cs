@@ -11,15 +11,15 @@ public class HitBoxScript : MonoBehaviour {
 
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerEnter.html
 	void OnTriggerEnter(Collider other) {
-		if (other.name == "biggymtrigger") {
+		if (this.gameObject.name == "biggymtrigger") {
 			other.name = "You are next to upperbody machine.";
-		} else if (other.name == "GymBenchTrigger") {
+		} else if (this.gameObject.name == "GymBenchTrigger") {
 			other.name = "Here you can do bench press";
-		} else if (other.name == "GymBikeTrigger") {
+		} else if (this.gameObject.name == "GymBikeTrigger") {
 			other.name = "Here you can ride the bike for cardio";
-		} else if (other.name == "PullupBarTrigger") {
+		} else if (this.gameObject.name == "PullupBarTrigger") {
 			other.name = "You can do pull ups here";
-		} else if (other.name == "DumbbellTrigger") {
+		} else if (this.gameObject.name == "Dumbbelltrigger") {
 			other.name = "Perform dumbbell workouts here";
 		} else {
 
