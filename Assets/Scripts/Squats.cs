@@ -19,8 +19,6 @@ public class Squats : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		renderer.material.color = triggerExitColor;
-
-	
 	}
 	
 	// Update is called once per frame
@@ -29,7 +27,8 @@ public class Squats : MonoBehaviour {
 	}
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerEnter.html
 	void OnTriggerEnter(Collider other) {
-		
+		badForm.Play();
+		badForm.volume = 0;
 		//ways to check to see if a specific object has entered the trigger:
 		
 		//Presence of a Component:
@@ -62,7 +61,7 @@ public class Squats : MonoBehaviour {
 	
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerStay.html
 	void OnTriggerStay(Collider other) {
-		badForm.Play();
+
 		if (Input.GetKeyDown("c"))
 		{
 			if ( counter <= reps){
@@ -70,7 +69,7 @@ public class Squats : MonoBehaviour {
 				/*audio.clip = clips[counter];
 				audio.Play ();*/
 				counter++;
-				
+				Debug.Log ("Counter increased");
 			}
 			if( counter == reps){
 				finished.Play();
@@ -81,27 +80,19 @@ public class Squats : MonoBehaviour {
 			
 			
 		}
-		if (Input.GetKey (KeyCode.C)) {
-			//other.transform.forward.y
-			Vector3 characterForward = new Vector3(other.transform.forward.x, 0, other.transform.forward.z);
-			characterForward.Normalize();
+		Vector3 characterForward = new Vector3(other.transform.forward.x, 0, other.transform.forward.z);
+		characterForward.Normalize();
+		float percentOff = (1 - Mathf.Clamp01(Vector3.Dot(characterForward, Camera.main.transform.forward)))*10;
 
-			Debug.Log (Camera.main.transform.forward);
+		Vector3 characterDown = Vector3.Cross(characterForward, other.transform.right);
+		bool up = Vector3.Dot(characterDown, Camera.main.transform.forward)>=0;
 
-			float percentOff = 1 - Mathf.Clamp01(Vector3.Dot(characterForward, Camera.main.transform.forward));
+		//TODO: volume = Mathf.pow(percentOff, 4); pitch = 1 + ((.8 * percentOff)*(up?1:-1));
+		float volume = Mathf.Pow(percentOff, 2);
+		float pitch = Mathf.Clamp((1f + ((.8f * percentOff)*(up?1:-1)))+2.0f, 0.6f, 7f);
 
-			Vector3 characterDown = Vector3.Cross(characterForward, other.transform.right);
-			bool up = Vector3.Dot(characterDown, Camera.main.transform.forward)>=0;
-
-			//TODO: volume = Mathf.pow(percentOff, 4); pitch = 1 + ((.8 * percentOff)*(up?1:-1));
-			float volume = Mathf.Pow(percentOff, 4);
-			float pitch = (1f + ((.8f * percentOff)*(up?1:-1)));
-
-			badForm.volume = volume + .1f;
-			badForm.pitch = pitch + .1f;
-
-		}
-		
+		badForm.volume = volume;
+		badForm.pitch = pitch;
 	}
 	
 	//http://docs.unity3d.com/ScriptReference/Collider.OnTriggerExit.html
