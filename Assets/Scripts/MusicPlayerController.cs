@@ -14,7 +14,7 @@ public class MusicPlayerController : MonoBehaviour {
 				quietTime -= Time.deltaTime;
 				audio.volume = Mathf.Max(0.10f, audio.volume-0.05f);
 			}else{
-				audio.volume = Mathf.Min(0.60f, audio.volume+0.05f);
+				audio.volume = Mathf.Min(0.40f, audio.volume+0.05f);
 			}
 		}else{
 			quietTime += Time.deltaTime;
