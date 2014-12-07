@@ -26,7 +26,12 @@ public enum SpeechVoices{
 	Begin,
 	Level, 
 	TheRugbyFitnessTest,
-	Count
+	//Count,
+	Bench,
+	Dumbbells,
+	Bikes,
+	Pullupbar,
+	Upperbody
 }
 
 [RequireComponent (typeof(AudioSource))]
@@ -148,6 +153,21 @@ public class VoiceAssembler : MonoBehaviour {
 				break;
 			case "the":
 				voices.Add(SpeechVoices.TheRugbyFitnessTest);
+				break;
+			case "benchnearby":
+				voices.Add(SpeechVoices.Bench);
+				break;
+			case "bikesnearby":
+				voices.Add(SpeechVoices.Bikes);
+				break;
+			case "dumbbellnearby":
+				voices.Add(SpeechVoices.Dumbbells);
+				break;
+			case "pullupnearby":
+				voices.Add(SpeechVoices.Pullupbar);
+				break;
+			case "upperbodynearby":
+				voices.Add(SpeechVoices.Upperbody);
 				break;
 			}
 		}
